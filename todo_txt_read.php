@@ -1,3 +1,5 @@
+<!-- php使うときに必ず読み書き部分の鍵設定！！ -->
+
 <?php
 
 //データまとめ用の空文字変数
@@ -14,7 +16,7 @@ flock($file, LOCK_EX);
 if ($file){
   while ($line = fgetcsv($file)){
     //取得したデータを｀$str｀に追加する
-    $str .="<tr><td>{$line[0]}{$line[1]}</td></tr>";//日時と名前の番号を指定
+    $str .="<tr><td>{$line[0]}{$line[1]}</td></tr>";//日時と名前の番号を指定！
     array_push($array, $line);
     // var_dump($line[0]);
     // exit();
@@ -155,6 +157,7 @@ fclose($file);
             <img src = "img/set-cutout.png">
           </div>
           <button type ="submit" id ="closeModal">×</div>
+          <!-- 閉じるところでsubmitを入れてる（送信ボタンと一緒にすると、phpが被って一瞬の表示になるため） -->
         </div>
       </section>
     </fieldset>
@@ -162,7 +165,7 @@ fclose($file);
 
   <fieldset>
     <legend>アンケートリスト（一覧画面）</legend>
-    <!-- <a href="todo_txt_input.php">入力画面</a> -->
+    <!-- <a href="todo_txt_input.php">入力画面</a> →移動しないようにした -->
     <div class ="result">
       <div>
       <table>
@@ -192,8 +195,7 @@ fclose($file);
 //モーダル
 $(function () {
   $('#openModal').on("click",function(){
-    console.log("こんにちは");
-      $('#modalArea').fadeIn();
+    $('#modalArea').fadeIn();
   });
   $('#closeModal').click(function(){
     $('#modalArea').fadeOut();
